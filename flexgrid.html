@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Exemplo de grade estilo NY Times</title>
+  <style>
+    /* Estilo da grade */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      grid-gap: 1px;
+    }
+    .grid-item {
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+    }
+    .grid-item img {
+      width: 100%;
+      height: auto;
+      transition: transform 0.3s ease-out;
+    }
+    .grid-item:hover img {
+      transform: scale(1.2);
+    }
+    .grid-item .caption {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background-color: rgba(0, 0, 0, 0.6);
+      color: #fff;
+      padding: 10px;
+      opacity: 0;
+      transition: opacity 0.3s ease-out;
+    }
+    .grid-item:hover .caption {
+      opacity: 1;
+    }
+    .grid-item .caption h2 {
+      margin: 0;
+      font-size: 20px;
+      font-weight: 400;
+    }
+    .grid-item .caption p {
+      margin: 0;
+      font-size: 16px;
+      font-weight: 300;
+    }
+
+    /* Estilo do lightbox */
+    .lightbox {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: rgba(0, 0, 0, 0.7);
+      z-index: 9999;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .lightbox img {
+      max-width: 40%;
+      max-height: 80%;
+    }
+
+  </style>
+</head>
+<body>
+  <div class="grid">
+    <div class="grid-item">
+        <a href="https://via.placeholder.com/800x600.png?text=Imagem+1" data-lightbox="example-gallery"><img src="https://via.placeholder.com/200x150.png?text=Imagem+1" alt="Imagem 1"></a>
+      <div class="caption">
+        <h2>Título da imagem 1</h2>
+        <p>Legenda da imagem 1</p>
+      </div>
+    </div>
+    <div class="grid-item">
+        <a href="https://via.placeholder.com/800x600.png?text=Imagem+2" data-lightbox="example-gallery"><img src="https://via.placeholder.com/200x150.png?text=Imagem+2" alt="Imagem 2"></a>
+      <div class="caption">
+        <h2>Título da imagem 2</h2>
+        <p>Legenda da imagem 2</p>
+      </div>
+    </div>
+    <div class="grid-item">
+        <a href="https://via.placeholder.com/800x600.png?text=Imagem+3" data-lightbox="example-gallery"><img src="https://via.placeholder.com/200x150.png?text=Imagem+3" alt="Imagem 3"></a>
+      <div class="caption">
+        <h2>Título da imagem 3</h2>
+        <p>Legenda da imagem 3</p>
+      </div>
+    </div>
+    <div class="grid-item">
+        <a href="https://via.placeholder.com/800x600.png?text=Imagem+4" data-lightbox="example-gallery"><img src="https://via.placeholder.com/200x150.png?text=Imagem+4" alt="Imagem 4"></a>
+      <div class="caption">
+        <h2>Título da imagem 4</h2>
+        <p>Legenda da imagem 4</p>
+      </div>
+      <div class="lightbox" id="lightbox">
+        <img src="">
+      </div>
+    
+      <script>
+        const lightbox = document.getElementById('lightbox');
+        const links = document.querySelectorAll('a[data-lightbox]');
+    
+        links.forEach(link => {
+          link.addEventListener('click', function(e) {
+            e.preventDefault();
+            const imageURL = this.getAttribute('href');
+            lightbox.querySelector('img').setAttribute('src', imageURL);
+            lightbox.style.display = 'flex';
+          });
+        });
+    
+        lightbox.addEventListener('click', function() {
+          lightbox.style.display = 'none';
+        });
+      </script>
+      </body>
+    </div>
